@@ -1,6 +1,6 @@
+import { Task } from './../Task';
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
-import {Task} from '../Task';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 const httpOptions = {
@@ -26,5 +26,8 @@ return this.http.delete<Task>(url);
   updateTaskReminder(task:Task):Observable<Task>{
     const url = `${this.apiUrl}/${task.id}`;
     return this.http.put<Task>(url, task, httpOptions)
+  }
+  addTask(task:Task):Observable<Task>{
+    return this.http.post<Task>(this.apiUrl, task, httpOptions)
   }
 }
